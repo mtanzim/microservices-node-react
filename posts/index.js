@@ -6,10 +6,9 @@ const app = express();
 app.use(bodyParser.json());
 
 const posts = {};
-const getPostsArr = () => Object.values(posts);
 app
   .get("/posts", (req, res) => {
-    return res.json(getPostsArr());
+    return res.json(posts);
   })
   .post("/posts", (req, res) => {
     const id = randomBytes(4).toString("hex");
@@ -18,7 +17,7 @@ app
       id,
       title,
     };
-    return res.status(201).json(getPostsArr());
+    return res.status(201).json(posts);
   });
 
 app.listen(4000, () => {
