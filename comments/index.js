@@ -1,25 +1,46 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { randomBytes } = require("crypto");
+const cors = require("cors");
+const axios = require("axios");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const comments = {};
 app
   .get("/posts/:id/comments", (req, res) => {
     return res.json(comments[req.params.id] || []);
   })
+  .post("/events/", (req, res) => {
+    console.log(req.body);
+    res.send("OK");
+  })
   .post("/posts/:id/comments", (req, res) => {
     const commentId = randomBytes(4).toString("hex");
+    const postId = req.params.id;
     const { content } = req.body;
-    const curComments = comments[req.params.id] || [];
+    const curComments = comments[postId] || [];
 
     curComments.push({
       id: commentId,
       content,
     });
-    comments[req.params.id] = curComments;
+    comments[postId] = curComments;
+
+    axios
+      .post("http://localhost:4005/events", {
+        type: "CommentCreated",
+        data: {
+          id: commentId,
+          content,
+          postId,
+        },
+      })
+      .then(() => console.log("comments sent event"))
+      .catch(console.error);
+
     return res.status(201).json(curComments);
   });
 
