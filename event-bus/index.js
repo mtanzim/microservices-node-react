@@ -11,19 +11,19 @@ app.post("/events/", (req, res) => {
     .post("http://localhost:4000/events/", event)
     .then(() => console.log("events sent event to posts"))
     .catch(() => {
-      console.log("Failed to send to post")
+      console.log("Failed to send to post");
     });
   axios
     .post("http://localhost:4001/events/", event)
     .then(() => console.log("events sent event to comments"))
     .catch(() => {
-      console.log("Failed to send to comments")
+      console.log("Failed to send to comments");
     });
   axios
     .post("http://localhost:4002/events/", event)
     .then(() => console.log("events sent event to query"))
     .catch(() => {
-      console.log("Failed to send to query")
+      console.log("Failed to send to query");
     });
   res.json({ status: "OK" });
 });
