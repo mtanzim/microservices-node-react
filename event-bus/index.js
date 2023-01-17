@@ -25,6 +25,12 @@ app.post("/events/", (req, res) => {
     .catch(() => {
       console.log("Failed to send to query");
     });
+  axios
+    .post("http://localhost:4003/events/", event)
+    .then(() => console.log("events sent event to moderation"))
+    .catch(() => {
+      console.log("Failed to send to query");
+    });
   res.json({ status: "OK" });
 });
 
