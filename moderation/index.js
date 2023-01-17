@@ -11,7 +11,7 @@ function getRandomInt(max) {
 
 app.post("/events/", (req, res) => {
   const body = req.body;
-  const isRejected = getRandomInt(100) % 2 === 0;
+  const isRejected = body?.data?.content?.includes("fuck");
   if (body?.type === "CommentCreated") {
     const moderatedData = {
       ...body.data,
