@@ -28,6 +28,27 @@ app
         },
       };
     }
+    if (body?.type === "CommentUpdated") {
+      console.log("updating");
+      console.log(body);
+      const curPost = posts[body.data.postId];
+      console.log(curPost);
+
+      const curCommentIdx = curPost.comments.findIndex(
+        (c) => c.id === body.data.id
+      );
+      console.log(curPost?.comments?.[curCommentIdx]);
+      posts = {
+        ...posts,
+        [body.data.postId]: {
+          ...curPost,
+          comments: curPost.comments
+            .slice(0, curCommentIdx)
+            .concat(body.data)
+            .concat(curPost.comments.slice(curCommentIdx + 1)),
+        },
+      };
+    }
     console.log(posts);
     res.send("OK");
   })

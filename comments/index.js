@@ -14,6 +14,20 @@ app
     return res.json(comments[req.params.id] || []);
   })
   .post("/events/", (req, res) => {
+    const body = req.body;
+
+    if (body?.type === "CommentModerated") {
+      let curComment = comments[body.data.id];
+      curComment = req.body.data;
+      axios
+        .post("http://localhost:4005/events", {
+          type: "CommentUpdated",
+          data: curComment,
+        })
+        .then(() => console.log("updated comment"))
+        .catch(console.error);
+    }
+
     console.log(req.body);
     res.send("OK");
   })
@@ -35,6 +49,7 @@ app
         data: {
           id: commentId,
           content,
+          status: "pending",
           postId,
         },
       })
