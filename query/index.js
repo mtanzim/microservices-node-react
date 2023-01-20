@@ -63,7 +63,7 @@ app
 
 app.listen(4002, async () => {
   const events = await axios.get("http://localhost:4005/events/");
-  // console.log(events.data);
+  console.log(events.data);
   events.data.forEach((event) => {
     handleEvent(event);
   });
