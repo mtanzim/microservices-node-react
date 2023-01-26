@@ -4,6 +4,7 @@ const { randomBytes } = require("crypto");
 const cors = require("cors");
 const axios = require("axios");
 
+const EVENT_BUS_URI = "http://event-bus-srv:4005";
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
@@ -25,7 +26,7 @@ app
     };
 
     axios
-      .post("http://localhost:4005/events", {
+      .post(`${EVENT_BUS_URI}/events`, {
         type: "PostCreated",
         data: {
           id,
