@@ -62,7 +62,7 @@ app
   });
 
 app.listen(4002, async () => {
-  const events = await axios.get("http://localhost:4005/events/");
+  const events = await axios.get("http://event-bus-srv:4005/events/");
   console.log(events.data);
   events.data.forEach((event) => {
     handleEvent(event);

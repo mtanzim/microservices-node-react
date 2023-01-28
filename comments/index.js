@@ -20,7 +20,7 @@ app
       let curComment = comments[body.data.id];
       curComment = req.body.data;
       axios
-        .post("http://localhost:4005/events", {
+        .post("http://event-bus-srv:4005/events", {
           type: "CommentUpdated",
           data: curComment,
         })
@@ -44,7 +44,7 @@ app
     comments[postId] = curComments;
 
     axios
-      .post("http://localhost:4005/events", {
+      .post("http://event-bus-srv:4005/events", {
         type: "CommentCreated",
         data: {
           id: commentId,

@@ -5,10 +5,6 @@ const axios = require("axios");
 const app = express();
 app.use(bodyParser.json());
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 app.post("/events/", (req, res) => {
   const body = req.body;
   const isRejected = body?.data?.content?.includes("fuck");
@@ -19,7 +15,7 @@ app.post("/events/", (req, res) => {
     };
     console.log(moderatedData);
     axios
-      .post("http://localhost:4005/events", {
+      .post("http://event-bus-srv:4005/events", {
         type: "CommentModerated",
         data: moderatedData,
       })
