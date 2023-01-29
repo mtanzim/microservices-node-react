@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 app.post("/events/", (req, res) => {
   const body = req.body;
-  const isRejected = body?.data?.content?.includes("fuck");
+  const isRejected = body?.data?.content?.includes("duck");
   if (body?.type === "CommentCreated") {
     const moderatedData = {
       ...body.data,
