@@ -12,6 +12,19 @@ A simple microservice based blog app demonstrating the following concepts:
 - Service orchestration with `kubernetes`
 - Local kubernetes dev with `skaffold`
 
+### Running the project
+
+- Ensure `/etc/hosts/` has the following lines:
+
+```
+# Added manually for microservices course
+127.0.0.1 posts.com
+```
+
+- Install [skaffold](https://skaffold.dev/), following was the version I used: `v2.1.0`
+- Run `skaffold dev` from the project directory
+- Visit `posts.com` on a browser
+
 ## Service architecture
 
 See the following diagram for an overview
