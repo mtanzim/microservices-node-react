@@ -14,10 +14,7 @@ app
     console.log(req.body);
     res.send("OK");
   })
-  .get("/posts", (req, res) => {
-    return res.json(posts);
-  })
-  .post("/posts", (req, res) => {
+  .post("/posts/create", (req, res) => {
     const id = randomBytes(4).toString("hex");
     const { title } = req.body;
     posts[id] = {
