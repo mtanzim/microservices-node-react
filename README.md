@@ -12,7 +12,11 @@ A simple microservice based blog app demonstrating the following concepts:
 - Service orchestration with `kubernetes`
 - Local kubernetes dev with `skaffold`
 
-## Service breakdowns
+## Service architecture
+
+See the following diagram for an overview
+
+![service architecture](./assets/readme.png "Service architecture")
 
 Note: all data is in memory
 
@@ -75,8 +79,6 @@ The comments service also handles events from the moderation service to update c
 ### Query service
 
 Query service listens for post and comment update events. It then aggregates the data for frontend clients. Following is an example response from the query service:
-
-Following are example events the query
 
 ```json
 {
