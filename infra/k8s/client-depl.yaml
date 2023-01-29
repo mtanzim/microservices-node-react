@@ -23,9 +23,9 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: comments
+    app: client
   ports:
-    - name: comments
+    - name: client
       protocol: TCP
       port: 3000
       targetPort: 3000
