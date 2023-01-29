@@ -37,6 +37,6 @@ app
   });
 
 app.listen(4000, () => {
-  console.log("v0.0.4");
+  console.log("SKAFFOLDDD!!!");
   console.log("Posts listening on :4000");
 });
